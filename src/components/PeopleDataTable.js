@@ -7,7 +7,7 @@ import Loading from "./Loading";
 // utilities
 import makeData from "../utilities/makeData";
 
-const data = makeData(20);
+const data = makeData(200);
 
 const columns = [
   {
@@ -36,13 +36,20 @@ const columns = [
   }
 ];
 
+const initialState = {
+  pageSize: 10,
+  pageIndex: 0
+};
+
 class PeopleDataTable extends Component {
   // Loading must be handled here because DataTable MUST have data on load
   renderTable() {
     if (!data) {
       return <Loading />;
     } else {
-      return <Datatable data={data} columns={columns} />;
+      return (
+        <Datatable data={data} columns={columns} initialState={initialState} />
+      );
     }
   }
 
